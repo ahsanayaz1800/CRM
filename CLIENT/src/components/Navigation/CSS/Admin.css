@@ -1,0 +1,29 @@
+.sidebar-menu {
+    max-height: 90vh; /* Set a maximum height for the sidebar */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 0; /* Optional: Adjust padding if needed */
+    margin: 0; /* Optional: Adjust margin if needed */
+  }
+  
+  .sidebar-menu li {
+    list-style: none; /* Remove default list style */
+    margin: 0;
+    padding: 10px ; /* Adjust padding if needed */
+  }
+  
+  .sidebar-menu li a {
+    display: block; /* Ensure the links take up the full width */
+    padding: 10px 20px; /* Adjust padding if needed */
+    text-decoration: none;
+  }
+  
+  /* .sidebar-menu li:hover {
+    background-color: black;
+  } */
+  .sidebar-menu li a:hover {
+    list-style: none; /* Remove default list style */
+    /* background-color: black; */;
+
+    margin: 0;
+    padding: 10px; /* Adjust padding if needed */
+  }

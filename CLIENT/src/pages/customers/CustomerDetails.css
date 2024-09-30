@@ -1,0 +1,44 @@
+/* Customer.css */
+.customer-details-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  .section-header {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .section-content {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .section-content strong {
+    display: inline-block;
+    width: 150px;
+  }
+  
+  .card-info, .bank-info {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .card-info p, .bank-info p {
+    margin-bottom: 5px;
+  }
+  
+  .customer-details-container .card-header h4 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #333;
+  }
