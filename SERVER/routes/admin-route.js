@@ -34,6 +34,8 @@ router.patch('/team/member/remove',asyncMiddleware(teamController.removeMember))
 router.patch('/team/leader/add',asyncMiddleware(teamController.addRemoveLeader));                   // Add Team Leader
 router.patch('/team/leader/remove',asyncMiddleware(teamController.addRemoveLeader));                // Remove Team Leader
 router.get('/counts',asyncMiddleware(teamController.getCounts));                                    // Counts
+router.get('/get_users_counts',asyncMiddleware(teamController.getUserCounts));                                    // Counts
+router.get('/get_users_by_month',asyncMiddleware(userController.getUsersByMonth));                                    // Counts
 router.post('/view-employee-attendance',asyncMiddleware(userController.viewEmployeeAttendance));
 router.post('/view-leave-applications',asyncMiddleware(userController.viewLeaveApplications));
 router.post('/assign-employee-salary',asyncMiddleware(userController.assignEmployeeSalary));

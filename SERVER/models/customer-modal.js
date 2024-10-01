@@ -56,6 +56,8 @@ const customerSchema = new mongoose.Schema({
     callStatus:{
         type:String
     }
+},{
+    timestamps:true
 });
 
 const Customer = mongoose.model('Customer', customerSchema);

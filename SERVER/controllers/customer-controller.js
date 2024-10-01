@@ -6,6 +6,14 @@ exports.createCustomer = async (req, res) => {
     const newCustomer = await customerService.createCustomer(customerData);
     return res.status(200).json({status:200, success: true,message:"customer added" ,data: newCustomer })
 };
+exports.getCustomersByMonth = async (req, res) => {
+    try {
+      const userData = await customerService.getCustomersByMonth();
+      return res.status(200).json({ success: true, data: userData });
+    } catch (error) {
+      return res.status(500).json({ success: false, message: error.message });
+    }
+  };
 exports.searchCustomerByPhone = async (req, res) => {
     const { phoneNumber } = req.query;
     console.log('Query Parameters:', req.query);

@@ -21,7 +21,8 @@ const Agent = () => {
       <li><NavLink className="nav-link" to="/reports"><i className="fas fa-chart-line"></i> <span>Reports</span></NavLink></li> */}
    <li><NavLink className="nav-link" to="/agent_customer"><i className="fas fa-list"></i> <span>Customer Listing</span></NavLink></li>
    <li><NavLink className="nav-link" to="/agent_attendance"><i className="fas fa-list"></i> <span>Attendance</span></NavLink></li>
-
+   <li><NavLink className="nav-link" to="/agent_team_chat"><i className="fas fa-list"></i> <span>Teams</span></NavLink></li>
+  
       <li className="menu-header">Settings</li>
       <li><NavLink className="nav-link" to="/contact"><i className="fab fa-teamspeak"></i> <span>Contact me</span></NavLink></li>
       <li><NavLink className="nav-link" to="/about"><i className="fas fa-info-circle"></i> <span>About me</span></NavLink></li>

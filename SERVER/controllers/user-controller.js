@@ -152,7 +152,14 @@ class UserController {
     //         next(ErrorHandler.serverError('Internal Server Error'));
     //     }
     // };
-
+     getUsersByMonth = async (req, res) => {
+        try {
+          const userData = await userService.getUsersByMonth();
+          return res.status(200).json({ success: true, data: userData });
+        } catch (error) {
+          return res.status(500).json({ success: false, message: error.message });
+        }
+      };
     updateUser = async (req, res, next) => {
         try {
             console.log('Request Body:', req.body);

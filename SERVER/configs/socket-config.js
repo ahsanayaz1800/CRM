@@ -15,7 +15,33 @@ const socketConnection = (server) => {
       credentials: true 
     }
   });
-   
+     // **Chat functionality**
+  io.on('connection', (socket) => {
+    console.log('New client connected:', socket.id);
+
+    // **Join room for team chat**
+    socket.on('joinRoom', ({ teamId }) => {
+      socket.join(teamId);
+      console.log(`User ${socket.id} joined room ${teamId}`);
+    });
+
+    // **Handle message sending**
+    socket.on('sendChatMessage', (messageData) => {
+      const { teamId } = messageData;
+      io.to(teamId).emit('receiveChatMessage', messageData); // Emit to the room
+    });
+
+    // **Leave room on disconnect**
+    socket.on('leaveRoom', ({ teamId }) => {
+      socket.leave(teamId);
+      console.log(`User ${socket.id} left room ${teamId}`);
+    });
+
+    // **Disconnect handling for chat**
+    socket.on('disconnect', () => {
+      console.log('Client disconnected from chat:', socket.id);
+    });
+  });
   // Watch changes in the Customer model
   const changeStream = Customer.watch();
 

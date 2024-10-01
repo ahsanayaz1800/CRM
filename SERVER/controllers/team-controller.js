@@ -165,6 +165,12 @@ class TeamController {
         }
         res.json({success:true,message:'Counts Found',data})
     }
+    getUserCounts = async (req,res,next) =>
+    {
+    
+        const data = await userService.findCount();
+        res.json({success:true,message:'Counts Found',data})
+    }
 
 }
 

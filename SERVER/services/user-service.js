@@ -14,7 +14,7 @@ class UserService {
         return await UserModel.create(user);
     };
 
-
+ 
 
 updateUser = async (id, user) => {
     try {
@@ -61,7 +61,39 @@ updateUser = async (id, user) => {
 };
 
 
-
+ getUsersByMonth = async() =>{
+    try {
+      // Aggregation pipeline to group users by creation month
+      const usersByMonth = await UserModel.aggregate([
+        {
+          $group: {
+            _id: { $month: "$createdAt" },  // Group by the month (1 for Jan, 12 for Dec)
+            usersCount: { $sum: 1 }          // Count the number of users in each month
+          }
+        },
+        {
+          $sort: { "_id": 1 }                // Sort the result by month (1 - 12)
+        }
+      ]);
+  
+      // Define an array for month names
+      const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      
+      // Format the data to include all months and ensure correct structure for the chart
+      const formattedData = months.map((month, index) => {
+        const foundMonth = usersByMonth.find(data => data._id === index + 1);
+        return {
+          month: month,
+          users: foundMonth ? foundMonth.usersCount : 0 // If no data for the month, return 0
+        };
+      });
+  
+      return formattedData;
+    } catch (error) {
+      throw new Error("Error fetching users by month: " + error.message);
+    }
+  }
+  
 getAllUsers = async () => {
         try {
             const users = await UserModel.find(); // Find all users

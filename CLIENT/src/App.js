@@ -60,6 +60,8 @@ import CustomerDetails from './pages/customers/CustomerDetails';
 import AttendancePage from './pages/attendance/AttendancePage';
 import AttendanceDetail from './pages/attendance_detail/AttendanceDetail';
 import UserAttendanceDetail from './pages/attendance_detail/UserAttendanceDetail';
+import TeamChat from './pages/team_chat/team_chat';
+import Chat from './pages/chat/chat';
 // import './assets/css/asdfasdf';
 // import './assets/css/asdfasdf';
 
@@ -73,6 +75,7 @@ const App = () =>
   <Loading/> : (
     <Switch>
     <Route path="/customer_details/:customerId" component={CustomerDetails} /> 
+    <Route path="/chat" component={Chat} />
 
       <ManagerRoute exact path='/manager_customer'>
         <Customer />
@@ -91,6 +94,10 @@ const App = () =>
       </AgentRoute>
       <AgentRoute  path='/agent_attendance'>
         <AttendancePage />
+
+      </AgentRoute>
+      <AgentRoute  path='/agent_team_chat'>
+        <TeamChat />
 
       </AgentRoute>
       <VerifierRoute exact path='/verifier_customer'>

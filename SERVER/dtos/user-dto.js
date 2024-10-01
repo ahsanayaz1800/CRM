@@ -24,9 +24,9 @@ class UserDto{
         this.cnic = user.cnic,
         this.relativeName = user.relativeName,
         this.relativePhone = user.relativePhone,
-        this.relativeRelation = user.address,
+        this.relativeRelation = user.relativeRelation,
         this.faceData = user.faceData
-        this.permissions = user.relativeRelation,
+        this.permissions = user.permissions,
         this.status = user.status && user.status.charAt(0)+user.status.slice(1),
         this.team = user.team && new TeamDto(Array.isArray(user.team) && user.team.length>0 ? user.team[0] : user.team);
     }

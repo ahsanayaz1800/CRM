@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 
 const  JuniorAdmin= () => {
   const {user} = useSelector(state => state.authSlice);
-  
+
   return (
     <div className="">
     <section className="section">

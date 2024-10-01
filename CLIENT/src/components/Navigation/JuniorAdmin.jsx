@@ -12,7 +12,7 @@ const JuniorAdmin = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const permissions = user.permissions || []
-
+console.log(user)
   const logout = async () => {
     await dLogout(); // This should also clear tokens (check if this happens)
     document.cookie = 'refreshToken=; Max-Age=0; path=/;';  // Clear refresh token cookie
@@ -28,9 +28,11 @@ const JuniorAdmin = () => {
       {permissions.includes('Manage User') && (
       <li><NavLink className="nav-link" to="/jr_admin_adduser"><i className="fas fa-user-plus"></i> <span>Add User </span></NavLink></li>
       )}
-      {permissions.includes('Manage Team') ? (
+      {permissions.includes('Manage Team') && (
       <li><NavLink className="nav-link" to="/jr_admin_addteam"><i className="fas fa-address-card"></i> <span>Add Team</span></NavLink></li>
-      ):  <Redirect to="/no-access" />}
+      )}
+      {/* {permissions.includes('Manage Team') ? (
+      ):  <Redirect to="/no-access" />} */}
       <li><NavLink className="nav-link" to="/jr_admin_attendance"><i className="fas fa-list"></i> <span>Attendance</span></NavLink></li>
 
       {/* <li><NavLink className="nav-link" to="/userManagement"><i className="fas fa-users-cog"></i> <span>User Management</span></NavLink></li>

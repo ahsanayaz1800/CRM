@@ -103,6 +103,8 @@ const LoginForm = () => {
             const { success } = res;
     
             if (success) {
+                console.log(res.user)
+                console.log(res.user.permissions)
                 dispatch(setAuth(res.user));
             }
             else{

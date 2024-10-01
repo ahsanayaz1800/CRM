@@ -19,6 +19,7 @@ export const dLogout = () => api.get('/auth/logout');
 
 //Admin
 export const getAllUsers = () => api.get('/admin/all_users');
+export const getUsersByMonth = () => api.get('/admin/get_users_by_month');
 export const getAgents = () => api.get('/admin/agents');
 export const getJuniorAdmins = () => api.get('/admin/junior_admin');
 export const getCustomerServices = () => api.get('/admin/customer_service');
@@ -72,6 +73,7 @@ export const viewEmployeeSalary = data => api.post('employee/view-salary',data);
 //customer
 export const createCustomer = data => api.post('/customer/add_customer',  data)
 export const getAllCustomers = ()=>api.get('/customer/get_all_customers')
+export const getCustomersByMonth = ()=>api.get('/customer/get_customers_by_month')
 export const getCustomerById = data => api.get(`customer/get_customer_by_id/${data}`,  data)
 export const updateCustomer = (id, data)=> api.patch(`customer/update_customer/${id}`, data)
 //notifications
@@ -87,6 +89,12 @@ export const getCustomerByPhone = phoneNumber => api.get(`/customer/search_by_ph
 export const markAttendance = data => api.post('attendance/mark_attendance', data)
 export const getAttendance = (data) => api.get(`attendance/get_attendance/${data}`)
 export const getAttendanceByDate = (userId, from, to) => api.get(`attendance/get_attendance_by_date`, {params:{userId,from,to}})
+
+
+//chat
+export const getTeamChats = (userId) => api.get(`chat/get_chat_teams/${userId}`)
+export const sendMessage = (data) => api.post('chat/send_message', data);
+export const getMessage = (teamId) => api.get(`chat/get_chat_message/${teamId}`);
 
 api.interceptors.response.use((response)=>{
     console.log("All Cookies",document.cookie);

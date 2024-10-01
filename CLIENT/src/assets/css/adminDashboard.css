@@ -1,0 +1,53 @@
+
+.summary-cards {
+  display: flex;
+  justify-content: space-between;
+  gap:30px
+}
+
+.admin-card {
+  background-color: #f4f4f4;
+  padding: 20px;
+  /* margin: 10px; */
+  border-radius: 8px;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.charts {
+  margin: 20px 0;
+}
+
+.traffic, .location-traffic {
+  margin: 20px 0;
+}
+
+.location-traffic-container, .traffic-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.location-traffic-container > div, .traffic-container > div {
+  width: 48%;
+}
+
+.location-legend {
+  padding: 10px;
+}
+
+.location-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.color-box {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+
+.location-name, .location-value {
+  margin-left: 10px;
+}

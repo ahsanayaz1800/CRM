@@ -12,6 +12,7 @@ const employeeRoute = require('./routes/employee-route');
 const attendanceRoute = require('./routes/attendance-routes')
 const leaderRoute = require('./routes/leader-route');
 const notificationRoute = require('./routes/notification-routes')
+const chatRoute = require('./routes/chat-routes')
 const errorMiddleware = require('./middlewares/error-middleware');
 const ErrorHandler = require('./utils/error-handler');
 const {auth, authRole} = require('./middlewares/auth-middleware');
@@ -50,14 +51,16 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Routes
+
 app.use('/api/auth',authRoute);
-// app.use('/api/admin',adminRoute);
+app.use('/api/admin',adminRoute);
 app.use('/api/admin',auth,authRole(['admin', 'junior_admin']),checkPermission('Manage User'),adminRoute);
 app.use('/api/employee',auth,authRole(['employee','leader']),employeeRoute);
 app.use('/api/leader',auth,authRole(['leader']),leaderRoute);
 app.use('/api/customer',customerRoute);
 app.use('/api/notification', notificationRoute)
 app.use('/api/attendance', attendanceRoute)
+app.use('/api/chat', chatRoute)
 
 app.use('/storage',express.static('storage'))
 

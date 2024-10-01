@@ -35,7 +35,7 @@ class AuthController {
                 return next(ErrorHandler.badRequest('Invalid Email or Username'));
             }
 
-            const { _id, name, username, email: dbEmail, password: hashPassword, type, status, faceData } = user;
+            const { _id, name, username, email: dbEmail, password: hashPassword, type, status, faceData,permissions } = user;
 
             if (status !== 'active') {
                 return next(ErrorHandler.badRequest('Account is not active. Please contact admin.'));
