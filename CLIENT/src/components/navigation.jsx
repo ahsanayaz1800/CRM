@@ -62,15 +62,15 @@ const Navigation = () => {
             
             <div className="dropdown-menu dropdown-menu-right">
               <div className="dropdown-title">Logged in 5 min ago</div>
-              <NavLink to="features-profile.html" className="dropdown-item has-icon">
+              {/* <NavLink to="features-profile.html" className="dropdown-item has-icon">
                 <i className="far fa-user"></i> Profile
-              </NavLink>
-              <NavLink to="features-activities.html" className="dropdown-item has-icon">
+              </NavLink> */}
+              <NavLink to="/activities" className="dropdown-item has-icon">
                 <i className="fas fa-bolt"></i> Activities
               </NavLink>
-              <NavLink to="features-settings.html" className="dropdown-item has-icon">
+              {/* <NavLink to="features-settings.html" className="dropdown-item has-icon">
                 <i className="fas fa-cog"></i> Settings
-              </NavLink>
+              </NavLink> */}
               <div className="dropdown-divider"></div>
               <NavLink to='/' onClick={logout} className="dropdown-item has-icon text-danger">
                 <i className="fas fa-sign-out-alt"></i> Logout

@@ -12,11 +12,13 @@ import JuniorAdmin from './Navigation/JuniorAdmin';
 import Adviser from "./Navigation/Advisor";
 import User from "./Navigation/User";
 import logo from "../assets/img/logo.svg"
+
 import { useEffect } from "react";
 
 const SideBar = () => {
   const { user } = useSelector(state => state.authSlice);
   const permissions = user.permissions
+    const { name, image, type } = useSelector((state) => state.authSlice.user);
 
   const renderSidebar = () => {
     switch (user.type) {
@@ -50,16 +52,21 @@ const SideBar = () => {
   return (
     <div className="main-sidebar">
       <aside id="sidebar-wrapper">
-        <div className="sidebar-brand">
+  
+        <div className="sidebar-brand" style={{display:'flex', gap:'20px', paddingLeft:'30px'}}>
+          <div><img src={image} alt="logo" width="30"   className=""/>
+          </div>
+          <div>
+            {name}
+          </div>
+        </div>
+        {renderSidebar()}
+      </aside>
+      <div className="sidebar-brand">
         <img src={logo} alt="logo" width="200"   className=""/>
 
           {/* <NavLink to="/home">The Organization</NavLink> */}
         </div>
-        <div className="sidebar-brand sidebar-brand-sm">
-          <NavLink to="/home">TM</NavLink>
-        </div>
-        {renderSidebar()}
-      </aside>
     </div>
   );
 }

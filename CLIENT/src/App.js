@@ -62,6 +62,7 @@ import AttendanceDetail from './pages/attendance_detail/AttendanceDetail';
 import UserAttendanceDetail from './pages/attendance_detail/UserAttendanceDetail';
 import TeamChat from './pages/team_chat/team_chat';
 import Chat from './pages/chat/chat';
+import Activities from './components/Activities';
 // import './assets/css/asdfasdf';
 // import './assets/css/asdfasdf';
 
@@ -76,6 +77,7 @@ const App = () =>
     <Switch>
     <Route path="/customer_details/:customerId" component={CustomerDetails} /> 
     <Route path="/chat" component={Chat} />
+    <ProtectedRoute path="/activities" component={Activities} />
 
       <ManagerRoute exact path='/manager_customer'>
         <Customer />

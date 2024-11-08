@@ -13,11 +13,23 @@ const Status = {
 
 };
 
+// List of regions for the dropdown
+const regions = {
+  Africa: 'Africa',
+  Asia: 'Asia',
+  Europe: 'Europe',
+  'North America': 'North America',
+  'South America': 'South America',
+  Oceania: 'Oceania'
+};
+
+
 const Customer1 = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [cardCount, setCardCount]= useState(0)
   const { user } = useSelector((state) => state.authSlice);
   const [value, setValue]=useState('')
+  const [selectedRegion, setSelectedRegion] = useState('');
 
   const [customerDetail, setCustomerDetail] = useState({
     customerInformation: {
@@ -28,6 +40,7 @@ const Customer1 = () => {
       address: "",
       city: "",
       state: "",
+      region:"",
       zipCode: "",
       poBox: "",
       ssn: "",
@@ -96,7 +109,10 @@ const Customer1 = () => {
     });
   };
 
-
+// Handle the change of selected region
+const handleRegionChange = (event) => {
+  setSelectedRegion(event.target.value);
+};
   // Method to add a new card section
   const handleAddCard = () => {
     setCustomerDetail((prevDetail) => ({
@@ -438,6 +454,25 @@ const Customer1 = () => {
                           />
                         </Form.Group>
                       </Col>
+                    </Row>
+                    <Row>
+                    <div className="form-group col-md-4">
+      <label>Select Region</label>
+      <select
+        name="customerInformation.region" // Name for the dropdown
+        value={customerDetail.customerInformation.region} // Value bound to state
+        onChange={handleChange} // Change handler
+        className="form-control select2" // Form styling classes
+      >
+        <option value="">--Select a Region--</option>
+        {/* Mapping through the regions object to generate options */}
+        {Object.entries(regions).map(([key, value]) => (
+          <option key={key} value={key}>
+            {value}
+          </option>
+        ))}
+      </select>
+    </div>
                     </Row>
                     {/* Add other fields like phone, address, etc. */}
                   </Container>

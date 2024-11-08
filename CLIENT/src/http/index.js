@@ -78,7 +78,7 @@ export const getCustomerById = data => api.get(`customer/get_customer_by_id/${da
 export const updateCustomer = (id, data)=> api.patch(`customer/update_customer/${id}`, data)
 //notifications
 
-export const getNotification = data =>api.get('notification/get_notifications/:userId')
+export const getNotifications = () =>api.get('notification/get_notifications')
 
 //filters
 

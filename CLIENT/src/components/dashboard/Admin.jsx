@@ -85,12 +85,11 @@ const Admin = () =>
   ];
 
   const trafficData = [
-    { name: 'Google', value: 4000 },
-    { name: 'YouTube', value: 3000 },
-    { name: 'Instagram', value: 2000 },
-    { name: 'Pinterest', value: 1500 },
-    { name: 'Facebook', value: 1000 },
-    { name: 'Twitter', value: 500 },
+    { name: 'Transfer to Manager', value: 4000 },
+    { name: 'Call Back', value: 3000 },
+    { name: 'Close', value: 2000 },
+    { name: 'Cancel', value: 1500 },
+    
   ];
 
 
@@ -186,7 +185,7 @@ const Admin = () =>
       </section>
 
       <section className="seo">
-        <h2>Marketing & SEO</h2>
+        <h2>Leads Status</h2>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={trafficData}>
             <XAxis dataKey="name" />

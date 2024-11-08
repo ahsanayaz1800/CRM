@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import HeaderSection from "../HeaderSection";
 import Admin from "./Admin";
@@ -8,34 +9,37 @@ import Agent from "./Agent";
 import CustomerService from "./CustomerService";
 import JuniorAdmin from "./JuniorAdmin";
 import Manager from "./Manager";
-import Adviser from "./adviser";
-import Verifier from "./verifier";
-import User from "./User"; // Assuming you have a TestUser component
-import io from "socket.io-client"; // Import socket.io-client
-import { useEffect } from "react";
-import 'dotenv/config'
+import Adviser from "./Adviser";
+import Verifier from "./Adviser";
+import User from "./User";
+import { getNotifications } from "../../http";
+import io from "socket.io-client"; // Uncomment if you're using socket.io
 
 const Dashboard = () => {
   const { user } = useSelector(state => state.authSlice);
   const socket = io(process.env.REACT_APP_SOCKET_SERVER_URL); // Set your Socket.io server URL
+  const [notifications, setNotifications] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [showAll, setShowAll] = useState(false); // State to control view all notifications
+  const { name, image, type } = useSelector((state) => state.authSlice.user);
 
-  // useEffect(() => {
-  //   // Socket connection and event listeners
-  //   socket.on('connect', () => {
-  //     console.log('Connected to socket server');
-  //   });
+  const showActivities = ['Admin', 'Manager', 'Junior_admin'].includes(type);
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+        const response = await getNotifications();
+        console.log(response);
+        setNotifications(response); // Assuming response contains the array of notifications
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching notifications', error);
+        setLoading(false);
+      }
+    };
 
-  //   socket.on('message', (message) => {
-  //     console.log('New message:', message);
-  //     // Handle incoming messages
-  //   });
+    fetchNotifications();
+  }, []);
 
-  //   // Clean up on component unmount
-  //   return () => {
-  //     socket.off('message');
-  //     socket.disconnect();
-  //   };
-  // }, []);
   const renderComponent = () => {
     switch (user.type) {
       case 'Admin':
@@ -63,14 +67,75 @@ const Dashboard = () => {
     }
   };
 
+  const toggleShowAll = () => {
+    setShowAll(prev => !prev);
+  };
+
   return (
     <div className="main-content">
       <section className="section">
         <HeaderSection title='Dashboard'/>
-        {renderComponent()}
+
+        {showActivities && (
+          <div style={{ display: 'flex', gap: '20px' }}>
+          <div>
+            {renderComponent()}
+          </div>
+          <div>
+            <div style={{ width: '280px', height: '400px' }}> 
+              <div className="activities-table" > 
+                <h3>Activities</h3>
+                <div 
+                  style={{ 
+                    maxHeight: showAll ? '400px' : '400px', // Adjust height based on showAll state
+                    overflowY: showAll ? 'scroll': 'hidden' // Enable scrolling only when showAll is true
+                  }}
+                >
+                  <table className="table">
+                    <thead>
+                      <tr>
+                        <th>Message</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {loading ? (
+                        <tr>
+                          <td colSpan="1">Loading...</td>
+                        </tr>
+                      ) : notifications.length > 0 ? (
+                        (showAll ? notifications : notifications.slice(0, 5)).map((notification) => (
+                          <tr key={notification._id}>
+                            <td>{notification.message}</td>
+                          </tr>
+                        ))
+                      ) : (
+                        <tr>
+                          <td colSpan="1">No notifications found</td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+                <button onClick={toggleShowAll} style={{ marginTop: '10px' }}>
+                  {showAll ? 'View Less' : 'View All'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+)}
+
+
+{!showActivities && renderComponent()}
+        
+
+
+
+     
       </section>
     </div>
   );
-}
+};
 
 export default Dashboard;

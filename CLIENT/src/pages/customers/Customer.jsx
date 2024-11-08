@@ -12,6 +12,15 @@ const Status = {
  close:"Close"
 
 };
+// List of regions for the dropdown
+const regions = {
+  Africa: 'Africa',
+  Asia: 'Asia',
+  Europe: 'Europe',
+  'North America': 'North America',
+  'South America': 'South America',
+  Oceania: 'Oceania'
+};
 
 const Customer = () => {
   const [customers, setCustomers] = useState([]); // State to hold the customer data
@@ -19,6 +28,7 @@ const Customer = () => {
   const [currentSection, setCurrentSection] = useState(0); // State to manage the current section
   const [showDetails, setShowDetails] = useState(false); // State to manage visibility of customer details
   const [filteredCustomers, setFilteredCustomers] = useState([]); // State for filtered customers
+  const [selectedRegion, setSelectedRegion] = useState('');
 
 
   const [searchQuery, setSearchQuery] = useState(""); // State for the search query
@@ -95,7 +105,10 @@ const [callStatusInfo, setCallStatusInfo] = useState(''); // Add state for call 
   };
   
 
-  
+  // Handle the change of selected region
+const handleRegionChange = (event) => {
+  setSelectedRegion(event.target.value);
+};
 
   const HandelAddCustomer = () => {
     switch (user.type) {
@@ -284,6 +297,23 @@ const [callStatusInfo, setCallStatusInfo] = useState(''); // Add state for call 
                 {renderField("ssn", "SSN")}
                 {renderField("dob", "Date of Birth")}
                 {renderField("mmm", "MMM")}
+                <div className="form-group col-md-4">
+      <label>Select Region</label>
+      <select
+        name="region" // Name for the dropdown
+        value={customerInfo.region} // Value bound to state
+        onChange={handleRegionChange} // Change handler
+        className="form-control select2" // Form styling classes
+      >
+        <option value="">--Select a Region--</option>
+        {/* Mapping through the regions object to generate options */}
+        {Object.entries(regions).map(([key, value]) => (
+          <option key={key} value={key}>
+            {value}
+          </option>
+        ))}
+      </select>
+    </div>
               </ListGroup>
             </Card.Body>
           </Card>

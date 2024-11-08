@@ -14,7 +14,8 @@ const customerSchema = new mongoose.Schema({
         poBox: { type: String },
         ssn: { type: String },
         dob: { type: Date, required: true },
-        mmm: { type: String } // Assuming 'mmm' is a required field; adjust if not
+        mmm: { type: String }, // Assuming 'mmm' is a required field; adjust if not
+        region:{ type: String}
     },
     cardInformation: [{
 

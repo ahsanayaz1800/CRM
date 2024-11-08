@@ -1,0 +1,94 @@
+.login-container {
+    display: flex;
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+    background-color: white;
+}
+
+.left-section {
+    flex: 1;
+    background-image: url('../img/login_bg.png'); /* Add your background image path here */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-container {
+    text-align: center;
+}
+
+.logo-img {
+    width: 70%;
+    max-width: 500px;
+}
+
+.right-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+
+.login-card {
+    width: 80%;
+    max-width: 400px;
+    /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); */
+    padding: 20px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.simple-footer {
+    margin-top: 20px;
+}
+
+.social-icon {
+    color: #3935EA;
+}
+
+.social-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+
+/* Webcam and Buttons Section */
+.webcam-section {
+    margin-top: 20px;
+}
+
+.webcam-view {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+/* Button Group */
+.button-group {
+    display: flex;
+    justify-content: space-between; /* Spread buttons across the line */
+}
+
+.webcam-btn {
+    background-color: #3935EA;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px; /* Space between buttons */
+    flex-grow: 1; /* Make buttons grow to fit equally */
+    text-align: center;
+}
+
+.webcam-btn:hover {
+    background-color: #2b29b8;
+}
+
+.webcam-btn:last-child {
+    margin-right: 0; /* Remove margin for the last button */
+}
+
